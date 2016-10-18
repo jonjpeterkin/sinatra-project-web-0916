@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>
+      <%unless @loc == "restaurants"%>
+        <a href="/restaurants"><strong>Restaurant List</a> | </strong>
+      <%end%>
+      <%unless @loc == "users"%>
+        <a href="/users"><strong>User List</a> | </strong>
+      <%end%>
+      <a href="/restaurants/new"><strong>Add a Restaurant</a> | </strong>
+      <a href="/users/new"><strong>Add a User</a>  </strong>
+    </p>
+
+    <%=yield%>
+  </body>
+</html>

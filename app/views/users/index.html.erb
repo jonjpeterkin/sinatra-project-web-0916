@@ -1,5 +1,7 @@
 this is the users index
 
-<% @users.each do |user|%>
-  <%= user.name %>
-<%end%>
+<ul>
+  <% @users.each do |user|%>
+    <li><a href="users/<%=user.id%>"><%= user.name %></a>
+  <%end%>
+</ul>

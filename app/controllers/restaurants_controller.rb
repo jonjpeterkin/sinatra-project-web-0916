@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 
   get "/restaurants" do
+    @loc = "restaurants"
     @restaurants = Restaurant.all
     erb :'restaurants/index.html'
   end
@@ -10,7 +11,8 @@ class RestaurantsController < ApplicationController
   end
 
   post "/restaurants" do
-    @restaurant = Restaurant.find_or_create_by(name: params[:restaurant][:name])
+    @restaurant = Restaurant.find_or_create_by(params[:restaurant])
+    @restaurant.user_ids
     redirect to "/restaurants/#{@restaurant.id}"
   end
 
