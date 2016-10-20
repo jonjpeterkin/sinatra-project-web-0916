@@ -13,9 +13,17 @@
         <a href="/users"><strong>User List</a> | </strong>
       <%end%>
       <a href="/restaurants/new"><strong>Add a Restaurant</a> | </strong>
-      <a href="/users/new"><strong>Add a User</a>  </strong>
+      <a href="/users/signin"><strong>Sign In</a></strong>
+      <i><% if User.signed_in %>
+      <%="(signed in as #{User.signed_in})"%>
+      <%else%>
+      <%="(not signed in)" %>
+      <%end%>
+      </i>
     </p>
-
+    <% if flash.has?(:message) %>
+      -- <strong><%= flash[:message] %></strong> --
+    <% end %>
     <%=yield%>
   </body>
 </html>
