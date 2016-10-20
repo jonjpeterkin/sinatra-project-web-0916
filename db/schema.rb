@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018192642) do
+ActiveRecord::Schema.define(version: 20161020012034) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 20161018192642) do
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "yelp_api_id"
+    t.string   "yelp_url"
+    t.string   "img_url"
+    t.string   "rating_img_url"
   end
 
   create_table "user_restaurants", force: :cascade do |t|

@@ -1,6 +1,25 @@
-this is the restaurants index
+
+<h2>Search for Restaurants</h2>
+<form action="/restaurants/search/1" method="GET">
+	<label>By Location:</label>
+  <input type="text" placeholder="e.g 'NYC' or zip" name="query[location]">
+  <label>By Other Info:</label>
+  <input type="text" placeholder="e.g 'food'" name="query[term]">
+  <p>
+  	<strong>Sort Results: </strong>
+	  <select name="sort_method">
+	    <option value="0">by Best Match</option>
+	    <option value="1">by Distance</option>
+	    <option value="2">by Rating</option>
+		</select>
+	</p>
+  <input type="submit" value="-- SEARCH --">
+</form>
+
+
+<h2>All Restaurants:</h2>
 <ul>
   <% @restaurants.each do |restaurant|%>
-    <li><a href="restaurants/<%=restaurant.id%>"><%= restaurant.name %></a>
+    <li><a href="/restaurants/<%=restaurant.id%>"><strong><%= restaurant.name %></strong></a> <- <img src="<%= restaurant.rating_img_url %>" alt="rating image">
   <%end%>
 </ul>

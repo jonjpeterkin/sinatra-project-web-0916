@@ -1,0 +1,36 @@
+
+<h2>Search for Restaurants</h2>
+<form action="/restaurants/search/1" method="GET">
+	<label>By Location:</label>
+  <input type="text" value="<%=@query[:location]%>" name="query[location]">
+  <label> By Other Info:</label>
+  <input type="text" value="<%=@query[:term]%>" name="query[term]">
+  <p>
+  	<strong>Sort Results: </strong>
+  	<%selected = Proc.new {|sort_val| "selected" if params[:sort_method] == sort_val}%>
+	  <select name="sort_method">
+	    <option value="0" <%=selected.call("0")%>>by Best Match</option>
+	    <option value="1" <%=selected.call("1")%>>by Distance</option>
+	    <option value="2" <%=selected.call("2")%>>by Rating</option>
+		</select>
+	</p>
+  <input type="submit" value="-- SEARCH --">
+</form>
+
+<% page = params[:page].to_i %>
+<h2>Search Results:</h2>
+<ol start="<%= page == 1 ? 1 : (page - 1) * 20 %>">
+  <% @restaurants.each do |restaurant|%>
+    <li><a href="/restaurants/<%=restaurant.id%>"><strong><%= restaurant.name %></strong></a> <- <img src="<%= restaurant.rating_img_url %>" alt="rating image"></li>
+  <%end%>
+</ol>
+
+
+<form action="/restaurants/search/<%=page + 1%>" method="GET">
+  <input type="hidden" value="<%=@query[:location]%>" name="query[location]">
+  <input type="hidden" value="<%=@query[:term]%>" name="query[term]">
+  <input type="hidden" value="<%=params[:sort_method]%>" name="sort_method">
+	<input type="submit" formaction="/restaurants/search/<%=page - 1%>" value="<< Prev" <%= "disabled" if page == 1 %>>
+<strong> - <%=page%> - </strong>
+  <input type="submit" value="Next >>">
+</form>
